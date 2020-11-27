@@ -1,14 +1,14 @@
 
 //----------------------fonts---------------------
-$fonts: 'Roboto', sans-serif
+$fonts: 'Inter', sans-serif
 //---------------------end-fonts---------------------
 
 //----------------------color---------------------
-$accent: #4cddee
-$text: #353535
+$accent: #1064B1
+$text: #32343C
 $dark: #1e53a6
-$title: #f43ddb
-
+$btn: #FB8F41
+$bg: #EAECF0
 //---------------------end-color---------------------
 
 body
@@ -51,14 +51,18 @@ p
 	padding: 0
 
 a,
-button,
+button
+	position: relative
+	transition: all .6s
+	color: $text
+
 	&:focus,
 	&:hover,
 		outline: none
 		text-decoration: none
-		transition: all .6s
 		border: none
 		outline: none
+		color: $text
 
 
 input, textarea, select

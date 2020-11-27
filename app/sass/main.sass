@@ -3,9 +3,12 @@
 // -----CONTAINER-----
 .container
 	width: 100%
-	max-width: 1200px
+	max-width: 1430px
 	padding: 0 15px
 	margin: 0 auto
+
+	+r(1430)
+		max-width: 1200px
 
 	+r(1200)
 		max-width: 992px
@@ -25,23 +28,29 @@
 	display: flex
 	justify-content: center
 	align-items: center
-	height: 45px
-	font-size: 18px
-	color: $accent
-	font-weight: 700
-	border-radius: 20px
+	flex-shrink: 0
+	min-height: 55px
+	border-radius: 5px
 	max-width: fit-content
+	background-color: $btn
+	text-transform: uppercase
+	font-size: 16px
+	font-weight: 700
+	color: #fff
+	padding: 0 30px
+	border: 0
 
 	&:hover,
 	&:focus
-		border: 1px solid $accent
-		background: $accent
+		box-shadow: 0 0 20px 0 rgba($btn, 1)
+		background: $btn
 		color: #fff
 
 // -----HAMBURGER-----
 .hamburger
 	position: relative
-	display: flex
+	// display: flex
+	display: none
 	padding: 0
 	border: none
 	background-color: transparent
@@ -64,7 +73,7 @@
 		left: 0
 		top: 50%
 		transform: translate(0, -50%)
-		width: 12px
+		width: 15px
 		height: 2px
 		background-color: $text
 		border-radius: 4px
@@ -83,7 +92,7 @@
 
 		&::before
 			top: 7px
-			width: 18px
+			width: 19px
 
 		&::after
 			top: -7px
@@ -91,14 +100,6 @@
 
 	&--active
 		z-index: 100
-
-		&:hover
-			span
-				background-color: transparent
-
-				&::before,
-				&::after
-					background-color: $accent
 
 		.hamburger__item
 			background-color: transparent
@@ -113,36 +114,196 @@
 				width: 25px
 				transform: rotate(-45deg)
 
+//--------LINK--------
+.link
+	&:hover
+		&::before
+			width: 45px
+	
+	&:active
+		&::before
+			width: 55px
 
+	&::before
+		+transition
+		content: ''
+		position: absolute
+		left: 50%
+		top: 110%
+		transform: translate(-50%, 0)
+		width: 0
+		height: 3px
+		border-radius: 1px
+		background-color: $accent
+		max-width: 100%
+
+//------TITLE--------
+.h1
+	font-size: 50px
+
+	span
+		color: $btn
+
+.h2
+	font-size: 36px
+	margin-bottom: 40px
+
+
+//---------MAIN----------
 .header
+	+transition
 	position: fixed
 	top: 0
 	right: 0
 	left: 0
+	padding: 3px 0
+	font-size: 16px
+	background-color: #ffffff
+	z-index: 1000
+
+	&--active
+		padding: 1px 0
 
 	&__container
 		+between
 
 	&__logo
-		width: 100px
+		width: 66px
+		margin-right: 20%
 
 		img
 			width: 100%
 			height: auto
 
+	&__wrap,
+	&__info
+		display: flex
+		align-items: center
+		width: 48%
 
-.section
-	padding: 40px 0
+	&__nav
+
+		ul
+			display: flex
+
+		li
+			margin-right: 25px
+
+			&:last-child
+				margin-right: 0
+		a
+			@extend .link
+			font-size: 16px
+
+	&__info
+		justify-content: flex-end
+
+		&_tel
+			@extend .link
+			font-weight: 700
+			margin-right: 25px
+		
+		&_order
+			color: $accent
+			text-transform: uppercase
+			text-decoration: underline
+			font-weight: 700
+
+			&:hover
+				text-decoration: underline
+
+
+.main
+	overflow: hidden
+	padding-bottom: 300px
+
+.hero
+	+cover
+	background-image: url(../img/hero__bg.jpg)
+	margin-top: 70px
+	padding: 80px 0 50px
+	color: #ffffff
+	text-align: center
+
+	&__container
+		position: relative
+		z-index: 1
+
+	&__subtitle
+		font-size: 24px
+		margin-bottom: 35px
+
+	&__img
+		width: 100%
+
+	&__info
+		+between
+		position: absolute
+		left: 0
+		right: 0
+		bottom: -225px
+		background-color: $bg
+		padding: 130px 40px 80px
+		box-shadow: 0px 7px 16px rgba(37, 105, 183, 0.49)
+		border-radius: 8px
+		z-index: -1
+
+		&_item
+			width: 23%
+
+		p
+			color: $text
+			font-size: 18px
+			line-height: 130%
+
+		img
+			margin-bottom: 15px
+
+
+.calculation
+	background-color: $bg
+	padding-top: 245px
+	padding-bottom: 215px
+
+	&__container
+		position: relative
+
+	&__form
+		max-width: 600px
+		margin: 0 auto
+
+	&__bunner
+		position: absolute
+		left: 0
+		right: 0
+		bottom: -330px
+		display: flex
+		justify-content: space-between
+		align-items: center
+		background-color: $accent
+		color: #ffffff
+		font-size: 36px
+		box-shadow: 0px 7px 16px rgba(37, 105, 183, 0.49)
+		border-radius: 8px
+		padding: 65px 80px 80px
+
+		span
+			font-size: 56px
+
 
 
 .footer
+	height: 400px
+
 	&__container
 		+between
 
 
 // -----MODAL-----
 .modal
-	display: none
+	display: flex
+	visibility: hidden
+	opacity: 0
 	position: fixed
 	top: 0
 	left: 0
@@ -155,45 +316,46 @@
 	background-color: rgba(#1a1a1d, .7)
 	overflow: auto
 	padding: 40px 0
+	+transition
 
-	&--open
-		position: relative
-		overflow: hidden
+	&.active
+		opacity: 1
+		visibility: visible
+
+		.modal__form
+			transform: translate(0, 0)
+			opacity: 1
 
 	&__close
 		position: absolute
-		right: -35px
-		top: -35px
+		right: 0
+		top: -40px
 		display: block
-		width: 40px
-		height: 40px
+		width: 30px
+		height: 30px
 		border-radius: 50%
 		border: none
 		cursor: pointer
 		transition: all .6s
-		background-color: #fff
+		background-color: transparent
 
 		+r(576)
 			width: 30px
 			height: 30px
-			top: -15px
-			right: -15px
-			box-shadow: 0 0 15px 0 rgba(#000, .7)
 
-		&:hover,
-		&:focus
+		&:hover
 			outline: none
 			transform: rotate(90deg)
 
 			span
-				background: red
+				background: $accent
 
 		span
 			display: block
 			position: absolute
 			left: 50%
 			top: 50%
-			background: #273a72
+			background: #fff
 			transition: all .6s
 			border-radius: 4px
 			height: 22px
@@ -209,13 +371,14 @@
 		z-index: 1
 		background-color: #fff
 		box-shadow: 0 0 16px rgba(0, 0, 0, 0.29)
-		border-radius: 20px
 		width: 100%
-		max-width: 860px
+		max-width: 500px
 		height: auto
-		padding: 20px
+		padding: 50px
 		border: 1px solid #8d8d8e
 		margin: auto
+		transform: translate(0, -150px)
+		+transition
 
 		&::after
 			border-radius: 20px
@@ -223,30 +386,17 @@
 		+r(992)
 			max-width: 90vw
 			padding: 40px
+		
+		+r(576)
+			padding: 25px
 
 	h3
+		text-transform: none
+		font-size: 20px
 		margin-bottom: 20px
+		text-align: center
+		font-weight: 600
 
-	&__line
-		margin-bottom: 20px
-
-	&__thanks
-		position: relative
-		display: flex
-		flex-direction: column
-		justify-content: center
-		align-items: center
-		flex-wrap: wrap
-		min-height: 200px
-		max-width: 480px
-
-		h3
-			text-transform: uppercase
-			font-size: 20px
-			margin-bottom: 20px
-		
-		p
-			font-size: 16px
 
 
 .form

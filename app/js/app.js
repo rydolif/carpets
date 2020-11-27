@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			});
 	
 		};
-		// headerFixed('.header', '.header--active');
+		headerFixed('.header', '.header--active');
 	
 	//----------------------HAMBURGER-----------------------
 		const hamburger = (hamburgerButton, hamburgerNav, hamburgerHeader) => {
@@ -110,24 +110,24 @@ document.addEventListener("DOMContentLoaded", function() {
 					const wrap = item.id;
 					const link = document.querySelector('.' + wrap);
 					let close = item.querySelector('.close');
+					if (link) {
+						link.addEventListener('click', (e) => {
+							if (e.target) {
+								e.preventDefault();
+							}
+							item.classList.add('active');
+						});
+					}
 
-					link.addEventListener('click', (e) => {
-						if (e.target) {
-							e.preventDefault();
-						}
-						item.style.display = 'flex';
-						document.body.classList.add('modal--open')
-					});
-
-					close.addEventListener('click', () => {
-						item.style.display = 'none';
-						document.body.classList.remove('modal--open');
-					});
+					if (close) {
+						close.addEventListener('click', () => {
+							item.classList.remove('active');
+						});
+					}
 
 					item.addEventListener('click', (e) => {
 						if (e.target === item) {
-							item.style.display = 'none';
-							document.body.classList.remove('modal--open');
+							item.classList.remove('active');
 						}
 					});
 				});
@@ -301,40 +301,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			});
 		};
 		forms('.form');
-
-	//----------------------ADD-INPUT-----------------------
-		const adminAdd = (adminAddInput) => {
-			const inputAdd = document.querySelectorAll(adminAddInput);
-			let i = 1;
-
-			inputAdd.forEach(item => {
-				const elem = 'form__add--' + i++;
-				item.classList.add(elem);
-
-				let inputId = item.id = (elem);
-				let inputParent = document.querySelector('#' + inputId);
-				let inputButton = inputParent.querySelector('button');
-
-				const inputDelete = inputParent.querySelectorAll('.form__nav_button--delete');
-				// console.log(inputDelete);
-
-				inputButton.addEventListener('click', (e) => {
-					e.preventDefault();
-					let parent = document.querySelector('#' + inputId);
-					let elem = inputParent.querySelector('.form__add_elem');
-					let clone = elem.cloneNode(true);
-					parent.append(clone);
-				});
-
-			// inputDelete.forEach(item => {
-			// 	item.addEventListener('click', (e) => {
-			// 		item.parentElement.parentElement.remove();
-			// 	});
-			// });
-
-			});
-		};
-		adminAdd('.form__add');
 
 });
 	

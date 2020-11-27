@@ -4,11 +4,13 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>Start Optimazed</title>
+	<title>Moikover</title>
 	<meta name="description" content="Startup HTML Optimized">
 	<meta name="viewport" content="width=device-width">
-	<link rel="icon" href="images/favicon.png">
-	<meta property="og:image" content="images/dest/preview.jpg">
+	<link rel="icon" href="img/favicon.ico">
+	<meta property="og:image" content="img/preview.jpg">
+	
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/app.min.css?v=1">
 	<script src="js/app.min.js" defer></script>
 
@@ -19,15 +21,25 @@
 	<header class="header">
 		<div class="header__container container">
 
-			<a href="/" class="header__logo">
-				
-			</a>
+			<div class="header__wrap">
+				<a href="/" class="header__logo">
+					<img src="img/logo.png" alt="">
+				</a>
+	
+				<nav class="header__nav">
+					<ul>
+						<li><a href="#">Рассчет стоимости</a></li>
+						<li><a href="#">Процесс</a></li>
+						<li><a href="#">Вопрос/Ответ</a></li>
+					</ul>
+				</nav>
+			</div>
 
-			<nav class="header__nav">
-				<ul>
-					<li><a href="#about">О компании</a></li>
-				</ul>
-			</nav>
+
+			<div class="header__info">
+				<a href="tel:880012345678" class="header__info_tel">8 800 1234 56 78</a>
+				<a href="#" class="header__info_order modal--order">Заказать стирку</a>
+			</div>
 
 			<button class="hamburger" type="button">
 				<span class="hamburger__item"></span>
@@ -36,22 +48,59 @@
 		</div>
 	</header>
 
-	<section class="section">
-		<div class="container">
+	<main class="main">
 
-			<a href="#" class="modal--edits">Добавить</a>
-			<a href="#" class="modal--add">Редактировать</a>
-			<a href="#" class="modal--next">Следующий</a>
-			<a href="#" class="modal--thanks">Благодарность</a>
+		<section class="hero section">
+			<div class="hero__container container">
 
-		</div>
-	</section>
+				<h1 class="h1">Фабричная <span>стирка ковров</span> с вывозом и доставкой</h1>
+				<p class="hero__subtitle">по г. Воронежу и области</p>
+
+				<img src="img/hero__img.png" alt="" class="hero__img">
+
+				<div class="hero__info">
+					<div class="hero__info_item">
+						<img src="img/hero__icon1.svg" alt="">
+						<p>Вывоз и доставка <br>бесплатно <br>при заказе от 6 кв.м</p>
+					</div>
+					<div class="hero__info_item">
+						<img src="img/hero__icon2.svg" alt="">
+						<p>Работаем <br>круглый год</p>
+					</div>
+					<div class="hero__info_item">
+						<img src="img/hero__icon3.svg" alt="">
+						<p>100% гарантия <br>сохранности ковров</p>
+					</div>
+					<div class="hero__info_item">
+						<img src="img/hero__icon4.svg" alt="">
+						<p>Дезинфекция <br>ковров</p>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<section class="calculation">
+			<div class="calculation__container container">
+				<form action="#" class="calculation__form">
+					<h2 class="h2">Рассчитать стоимость</h2>
+					<button class="btn">заказать чистку</button>
+				</form>
+
+				<div class="calculation__bunner">
+					<p>До 30 ноября <b>всем посетителям сайта скидка <span>10</span>%!</b></p>
+					<a href="#" class="btn modal--sale">заказать по скидке</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
 
 	<footer class="footer">
 		<div class="footer__container container"></div>
 	</footer>
 
-	<div class="modal" id="modal--edits">
+	<div class="modal" id="modal--order">
 		<form action="#" class="modal__form form" method="POST">
 	
 			<button class="close modal__close" type="button">
@@ -59,143 +108,47 @@
 				<span></span>
 			</button>
 	
-			<h3 class="form__title">Добавить елемент в слайдер</h3>
-
-			<input type="hidden" name="subject" value="Добавить елемент в слайдер">
-
-			<div class="form__nav_wrap form__add">
-				<div class="form__nav_item form__add_elem">
-					<input type="text" name="name" placeholder="Задача" class="form__input _req">
-					<div class="form__nav_button">
-						<a href="javascript: void(0)" onclick="myFunc(this)" class="form__nav_button--delete" title="Удалить">
-							<img src="img/delete.svg" alt="">
-						</a>
-					</div>
-				</div>
-
-				<div class="form__btn">
-					<button type="button" class="btn form__btn_button" title="Добавить">Добавить елемент</button>
-				</div>
-			</div>
-
-			<div class="form__item">
-				<label for="formName" class="form__label">Имя*</label>
-				<input id="formName" type="text" name="name" placeholder="Имя" class="form__input _req">
-			</div>
-
-			<div class="form__item">
-				<label for="formPhone" class="form__label">Телефон*</label>
-				<input id="formPhone" type="tel" name="phone" placeholder="Телефон" class="form__input _req" maxlength="13">
-			</div>
-
-			<div class="form__item">
-				<label for="formMail">Почта*</label>
-				<input id="formMail" type="email" name="mail" placeholder="Почта" class="form__input _req">
-			</div>
-
-			<div class="form__item">
-				<div class="form__label">Левша или правша?</div>
-				<div class="form__options">
-					<div class="form__options_item">
-						<input id="formRigth" type="radio" value="raight" name="hand" class="form__options_input" checked>
-						<label for="formRigth" class="form__options_label"><span>Правша</span></label>
-					</div>
-					<div class="form__options_item">
-						<input id="formLeft" type="radio" value="left" name="hand" class="form__options_input">
-						<label for="formLeft" class="form__options_label"><span>Левша</span></label>
-					</div>
-				</div>
-			</div>
-
-			<div class="form__item">
-				<label for="formMessage" class="form__label">Сообщение</label>
-				<textarea name="message" id="formMessage" class="form__textarea"></textarea>
-			</div>
-
-			<div class="form__item">
-				<div class="form__label">Возраст:</div>
-				<select name="age" id="formAge" class="form__select">
-					<option value="18" selected="selected">18</option>
-					<option value="25">25</option>
-					<option value="30">30</option>
-					<option value="50">50</option>
-				</select>
-			</div>
-
-			<div class="form__item">
-				<div class="form__label">Прикрепить фото:</div>
-				<div class="form__file formImgFile">
-					<div class="form__file_item">
-						<input accept=".jpg, .png, .gif, .ico" type="file" name="image" class="formImage form__file_input">
-						<label class="formLebel form__file_button btn">Выбрать</label>
-					</div>
-					<div id="formPreview" class="formPreview form__file_preview"></div>
-				</div>
-			</div>
-
-			<div class="form__item">
-				<div class="form__checkbox">
-					<input id="formAgreement" checked type="checkbox" name="agreement" class="form__checkbox_input _req">
-					<label for="formAgreement" class="form__checkbox_label"><span>Персональные данные <a href="#">Файл</a></span></label>
-				</div>
-			</div>
-
-			<div class="form__btn">
-				<button type="submit" class="btn form__btn_button" name="submit">Отправить</button>
-			</div>
-
-		</form>
-	</div>
-
-	<div class="modal" id="modal--add">
-		<form action="#" class="modal__form form" method="POST">
-	
-			<button class="close modal__close" type="button">
-				<span></span>
-				<span></span>
-			</button>
-	
-				<h3 class="form__title">Редактировать елемент 1</h3>
+				<h3 class="form__title">Редактировать елемент 2</h3>
 
 				<input type="hidden" name="subject" value="Редактировать елемент">
 
 				<div class="form__item">
-					<label for="formName2" class="form__label">Имя*</label>
-					<input id="formName2" type="text" name="name" placeholder="Имя" class="form__input _req">
+					<label for="formName3" class="form__label">Имя*</label>
+					<input id="formName3" type="text" name="name" placeholder="Имя" class="form__input _req">
 				</div>
 
 				<div class="form__item">
-					<label for="formPhone2" class="form__label">Телефон*</label>
-					<input id="formPhone2" type="tel" name="phone" placeholder="Телефон" class="form__input _req">
+					<label for="formPhone3" class="form__label">Телефон*</label>
+					<input id="formPhone3" type="tel" name="phone" placeholder="Телефон" class="form__input _req">
 				</div>
 
 				<div class="form__item">
-					<label for="formMail2">Почта*</label>
-					<input id="formMail2" type="email" name="mail" placeholder="Почта" class="form__input _req">
+					<label for="formMail3">Почта*</label>
+					<input id="formMail3" type="email" name="mail" placeholder="Почта" class="form__input _req">
 				</div> 
 
 				<div class="form__item">
 					<div class="form__label">Левша или правша?</div>
 					<div class="form__options">
 						<div class="form__options_item">
-							<input id="formRigth2" type="radio" value="raight" name="hand" class="form__options_input" checked>
-							<label for="formRigth2" class="form__options_label"><span>Правша</span></label>
+							<input id="formRigth3" type="radio" value="raight" name="hand" class=" form__options_input" checked>
+							<label for="formRigth3" class="form__options_label"><span>Правша</span></label>
 						</div>
 						<div class="form__options_item">
-							<input id="formLeft2" type="radio" value="left" name="hand" class="form__options_input">
-							<label for="formLeft2" class="form__options_label"><span>Левша</span></label>
+							<input id="formLeft3" type="radio" value="left" name="hand" class="form__options_input">
+							<label for="formLeft3" class="form__options_label"><span>Левша</span></label>
 						</div>
 					</div>
 				</div>
 
 				<div class="form__item">
-					<label for="formMessage2" class="form__label">Сообщение</label>
-					<textarea id="formMessage2" name="message" class="form__textarea _req"></textarea>
+					<label for="formMessage3" class="form__label">Сообщение</label>
+					<textarea id="formMessage3" name="message" class="form__textarea"></textarea>
 				</div>
 
 				<div class="form__item">
 					<div class="form__label">Возраст:</div>
-					<select name="age" id="formAge2" class="form__select">
+					<select name="age" id="formAge3" class="form__select">
 						<option value="18" selected="selected">18</option>
 						<option value="25">25</option>
 						<option value="30">30</option>
@@ -216,8 +169,8 @@
 
 				<div class="form__item">
 					<div class="form__checkbox">
-						<input id="formAgreement2" checked type="checkbox" name="agreement" class="form__checkbox_input _req">
-						<label for="formAgreement2" class="form__checkbox_label"><span>Персональные данные <a href="#">Файл</a></span></label>
+						<input id="formAgreement3" checked type="checkbox" name="agreement" class="form__checkbox_input _req">
+						<label for="formAgreement3" class="form__checkbox_label"><span>Персональные данные <a href="#">Файл</a></span></label>
 					</div>
 				</div>
 
@@ -228,7 +181,7 @@
 		</form>
 	</div>
 
-	<div class="modal" id="modal--next">
+	<div class="modal" id="modal--sale">
 		<form action="#" class="modal__form form" method="POST">
 	
 			<button class="close modal__close" type="button">
@@ -321,8 +274,6 @@
 		</div>
 
 	</div>
-
-
 
 </body>
 </html>
