@@ -2,30 +2,30 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-	//----------------------SLIDER-hero----------------------
-		// var mySwiper = new Swiper('.hero__slider', {
-		// 	slidesPerView: 1,
-		// 	spaceBetween: 30,
-		// 	loop: true,
-		// 	effect: 'fade',
-		// 	autoplay: {
-		// 		delay: 5000,
-		// 	},
-		// 	pagination: {
-		// 		el: '.hero__pagination',
-		// 		clickable: 'true',
-		// 	},
-		// 	navigation: {
-		// 		nextEl: '.hero__next',
-		// 		prevEl: '.hero__prev',
-		// 	},
-		// 	breakpoints: {
-		// 		320: {
-		// 			slidesPerView: 2,
-		// 			spaceBetween: 20
-		// 		},
-		// 	}
-		// });
+	//----------------------SLIDER-price----------------------
+		var mySwiper = new Swiper('.price__slider', {
+			slidesPerView: 1,
+			spaceBetween: 30,
+			// loop: true,
+			// effect: 'fade',
+			autoplay: {
+				delay: 5000,
+			},
+			// pagination: {
+			// 	el: '.hero__pagination',
+			// 	clickable: 'true',
+			// },
+			navigation: {
+				nextEl: '.price__slider_next',
+				prevEl: '.price__slider_prev',
+			},
+			// breakpoints: {
+			// 	320: {
+			// 		slidesPerView: 2,
+			// 		spaceBetween: 20
+			// 	},
+			// }
+		});
 
 	//----------------------SCROLL-----------------------
 		const scrollTo = (scrollTo) => {
@@ -89,15 +89,24 @@ document.addEventListener("DOMContentLoaded", function() {
 			const button = document.querySelector(hamburgerButton),
 						nav = document.querySelector(hamburgerNav),
 						header = document.querySelector(hamburgerHeader);
-	
+
 			button.addEventListener('click', (e) => {
-				button.classList.toggle('hamburger--active');
 				nav.classList.toggle('header__nav--active');
 				header.classList.toggle('header--menu');
 			});
-	
+
+			const headerWrap = document.querySelector('.header__nav');
+
+			nav.addEventListener('click', (e) => {
+				if (e.target === headerWrap) {
+					nav.classList.remove('header__nav--active');
+					header.classList.remove('header--menu');
+				}
+			});
+
 		};
-		// hamburger('.hamburger', '.header__nav', '.header');
+		hamburger('.hamburger', '.header__nav', '.header');
+		hamburger('.header__nav_close', '.header__nav', '.header');
 		
 	//----------------------MODAL-----------------------
 		const modals = (modalSelector) => {
@@ -135,172 +144,187 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		};
 		modals('.modal');
+//------------------------------ACCORDIONS---------------------------
+	const accordions = (accordionSelector) => {
+		const	accordion = document.querySelectorAll(accordionSelector);
+
+		accordion.forEach(item => {
+			const accordionClick = item.querySelector('.accordion__header'),
+						accordionContent = item.querySelector('.accordion__content');
+
+			accordionClick.addEventListener('click', (e) => {
+				item.classList.toggle('accordion--active');
+			});
+		});
+	};
+	accordions('.accordion');
+
 
 	//----------------------FORM-----------------------
-		const forms = (formsSelector) => {
-			const form = document.querySelectorAll(formsSelector);
-			let i = 1;
-			let img = 1;
-			let lebel = 1;
-			let prev = 1;
+		// const forms = (formsSelector) => {
+		// 	const form = document.querySelectorAll(formsSelector);
+		// 	let i = 1;
+		// 	let img = 1;
+		// 	let lebel = 1;
+		// 	let prev = 1;
 
-			form.forEach(item => {
-				const elem = 'form--' + i++;
-				item.classList.add(elem);
+		// 	form.forEach(item => {
+		// 		const elem = 'form--' + i++;
+		// 		item.classList.add(elem);
 
-				let formId = item.id = (elem);
-				let formParent = document.querySelector('#' + formId);
+		// 		let formId = item.id = (elem);
+		// 		let formParent = document.querySelector('#' + formId);
 
-				formParent.addEventListener('submit', formSend);
+		// 		formParent.addEventListener('submit', formSend);
 
-				async function formSend(e) {
-					e.preventDefault();
+		// 		async function formSend(e) {
+		// 			e.preventDefault();
 			
-					let error = formValidate(item);
+		// 			let error = formValidate(item);
 			
-					let formData = new FormData(item);
-					formData.append('image', formImageAdd.files[0]);
+		// 			let formData = new FormData(item);
+		// 			formData.append('image', formImageAdd.files[0]);
 
-					if (error === 0) {
-						item.classList.add('_sending');
-						let response = await fetch('sendmail.php', {
-							method: 'POST',
-							body: formData
-						});
+		// 			if (error === 0) {
+		// 				item.classList.add('_sending');
+		// 				let response = await fetch('sendmail.php', {
+		// 					method: 'POST',
+		// 					body: formData
+		// 				});
 			
-						if (response.ok) {
-							let modalThanks = document.querySelector('#modal--thanks');
-							formParent.parentNode.style.display = 'none';
+		// 				if (response.ok) {
+		// 					let modalThanks = document.querySelector('#modal--thanks');
+		// 					formParent.parentNode.style.display = 'none';
 
-							modalThanks.style.display = 'flex';
-							document.body.classList.add('modal--open');
-							formPreview.innerHTML = '';
-							item.reset();
-							item.classList.remove('_sending');
-						} else {
-							alert('Ошибка при отправке');
-							item.classList.remove('_sending');
-						}
+		// 					modalThanks.style.display = 'flex';
+		// 					document.body.classList.add('modal--open');
+		// 					formPreview.innerHTML = '';
+		// 					item.reset();
+		// 					item.classList.remove('_sending');
+		// 				} else {
+		// 					alert('Ошибка при отправке');
+		// 					item.classList.remove('_sending');
+		// 				}
 			
-					}
-				}
+		// 			}
+		// 		}
 			
-				function formValidate(item) {
-					let error = 0;
-					let formReq = formParent.querySelectorAll('._req');
+		// 		function formValidate(item) {
+		// 			let error = 0;
+		// 			let formReq = formParent.querySelectorAll('._req');
 
-					for (let index = 0; index < formReq.length; index++) {
-						const input = formReq[index];
-						// formRemoveError(input);
+		// 			for (let index = 0; index < formReq.length; index++) {
+		// 				const input = formReq[index];
+		// 				// formRemoveError(input);
 			
-						if (input.classList.contains('_email')) {
-							if(emailTest(input)) {
-								formAddErrorEmail(input);
-								error++;
-							}
-						} else if (input.getAttribute('type') === 'checkbox' && input.checked === false) {
-							formAddErrorCheck(input);
-							error++;
-						} else {
-							if (input.value === '') {
-								formAddError(input);
-								error++;
-							}
-						}
-					}
-					return error;
-				}
+		// 				if (input.classList.contains('_email')) {
+		// 					if(emailTest(input)) {
+		// 						formAddErrorEmail(input);
+		// 						error++;
+		// 					}
+		// 				} else if (input.getAttribute('type') === 'checkbox' && input.checked === false) {
+		// 					formAddErrorCheck(input);
+		// 					error++;
+		// 				} else {
+		// 					if (input.value === '') {
+		// 						formAddError(input);
+		// 						error++;
+		// 					}
+		// 				}
+		// 			}
+		// 			return error;
+		// 		}
 
-				const formImgFile = formParent.querySelectorAll('.formImgFile');
-				// console.log(formImgFile);
+		// 		const formImgFile = formParent.querySelectorAll('.formImgFile');
+		// 		// console.log(formImgFile);
 
-				formImgFile.forEach(item => { 
-					const elem = 'formImgFile--' + i++;
+		// 		formImgFile.forEach(item => { 
+		// 			const elem = 'formImgFile--' + i++;
 
-					let formId = item.id = (elem);
-					let formParent = document.querySelector('#' + formId);
+		// 			let formId = item.id = (elem);
+		// 			let formParent = document.querySelector('#' + formId);
 
-					const formImage = formParent.querySelector('.formImage');
-					const formLebel = formParent.querySelector('.formLebel');
-					const formPreview = formParent.querySelector('.formPreview');
+		// 			const formImage = formParent.querySelector('.formImage');
+		// 			const formLebel = formParent.querySelector('.formLebel');
+		// 			const formPreview = formParent.querySelector('.formPreview');
 
-					//картинка в форме
-					let formImageNumber = 'formImage--' + img++;
-					let formPreviewNumber = 'formPreview--' + prev++;
+		// 			//картинка в форме
+		// 			let formImageNumber = 'formImage--' + img++;
+		// 			let formPreviewNumber = 'formPreview--' + prev++;
 					
-					formImage.id = (formImageNumber);
-					formLebel.htmlFor = ('formImage--' + lebel++);
-					formPreview.id = (formPreviewNumber);
-					console.log(formPreview);
-					const formImageAdd = document.querySelector('#' + formImageNumber);
+		// 			formImage.id = (formImageNumber);
+		// 			formLebel.htmlFor = ('formImage--' + lebel++);
+		// 			formPreview.id = (formPreviewNumber);
+		// 			console.log(formPreview);
+		// 			const formImageAdd = document.querySelector('#' + formImageNumber);
 
-					// изменения в инпуте файл
-					formImageAdd.addEventListener('change', () =>  {
-						uploadFile(formImage.files[0]);
-					});
+		// 			// изменения в инпуте файл
+		// 			formImageAdd.addEventListener('change', () =>  {
+		// 				uploadFile(formImage.files[0]);
+		// 			});
 
-					function uploadFile(file) {
+		// 			function uploadFile(file) {
 				
-						if (!['image/jpeg', 'image/png', 'image/gif', 'image/ico'].includes(file.type)) {
-							alert('Только изображения');
-							formImage.value = '';
-							return;
-						}
+		// 				if (!['image/jpeg', 'image/png', 'image/gif', 'image/ico'].includes(file.type)) {
+		// 					alert('Только изображения');
+		// 					formImage.value = '';
+		// 					return;
+		// 				}
 				
-						if (file.size > 2 * 1024 * 1024) {
-							alert('Размер менее 2 мб.');
-							return;
-						}
+		// 				if (file.size > 2 * 1024 * 1024) {
+		// 					alert('Размер менее 2 мб.');
+		// 					return;
+		// 				}
 				
-						var reader = new FileReader();
-						reader.onload = function (e) {
-							formPreview.innerHTML = `<img src="${e.target.result}" alt="Фото">`;
-						};
-						reader.onerror = function (e) {
-							alert('Ошибка');
-						};
-						reader.readAsDataURL(file);
-					}
-				})
+		// 				var reader = new FileReader();
+		// 				reader.onload = function (e) {
+		// 					formPreview.innerHTML = `<img src="${e.target.result}" alt="Фото">`;
+		// 				};
+		// 				reader.onerror = function (e) {
+		// 					alert('Ошибка');
+		// 				};
+		// 				reader.readAsDataURL(file);
+		// 			}
+		// 		})
 
 			
-				function formAddError(input) {
-					let div = document.createElement('div');
-					div.classList.add("form__error");
-					div.innerHTML = "Введите данные в поле";
+		// 		function formAddError(input) {
+		// 			let div = document.createElement('div');
+		// 			div.classList.add("form__error");
+		// 			div.innerHTML = "Введите данные в поле";
 
-					input.parentElement.append(div);
-					input.parentElement.classList.add('_error');
-					input.classList.add('_error');
-				}
+		// 			input.parentElement.append(div);
+		// 			input.parentElement.classList.add('_error');
+		// 			input.classList.add('_error');
+		// 		}
 			
-				function formAddErrorEmail(input) {
-					let div = document.createElement('div');
-					div.classList.add("form__error");
-					div.innerHTML = "Введите свою почту";
+		// 		function formAddErrorEmail(input) {
+		// 			let div = document.createElement('div');
+		// 			div.classList.add("form__error");
+		// 			div.innerHTML = "Введите свою почту";
 
-					input.parentElement.append(div);
-					input.parentElement.classList.add('_error');
-					input.classList.add('_error');
-				}
+		// 			input.parentElement.append(div);
+		// 			input.parentElement.classList.add('_error');
+		// 			input.classList.add('_error');
+		// 		}
 			
-				function formAddErrorCheck(input) {
-					let div = document.createElement('div');
-					div.classList.add("form__error");
-					div.innerHTML = "Согласие на обработку персональных данных";
+		// 		function formAddErrorCheck(input) {
+		// 			let div = document.createElement('div');
+		// 			div.classList.add("form__error");
+		// 			div.innerHTML = "Согласие на обработку персональных данных";
 
-					input.parentElement.append(div);
-					input.parentElement.classList.add('_error');
-					input.classList.add('_error');
-				}
+		// 			input.parentElement.append(div);
+		// 			input.parentElement.classList.add('_error');
+		// 			input.classList.add('_error');
+		// 		}
 			
-				function emailTest(input) {
-					return !/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/. test(input.value);
-				}
+		// 		function emailTest(input) {
+		// 			return !/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/. test(input.value);
+		// 		}
 
-			});
-		};
-		forms('.form');
+		// 	});
+		// };
+		// forms('.form');
 
 });
 	
