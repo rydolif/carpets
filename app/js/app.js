@@ -144,21 +144,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		};
 		modals('.modal');
-//------------------------------ACCORDIONS---------------------------
-	const accordions = (accordionSelector) => {
-		const	accordion = document.querySelectorAll(accordionSelector);
 
-		accordion.forEach(item => {
-			const accordionClick = item.querySelector('.accordion__header'),
-						accordionContent = item.querySelector('.accordion__content');
+	//------------------------------ACCORDIONS---------------------------
+		const accordions = (accordionSelector) => {
+			const	accordion = document.querySelectorAll(accordionSelector);
 
-			accordionClick.addEventListener('click', (e) => {
-				item.classList.toggle('accordion--active');
+			accordion.forEach(item => {
+				const accordionClick = item.querySelector('.accordion__header'),
+							accordionContent = item.querySelector('.accordion__content');
+
+				accordionClick.addEventListener('click', (e) => {
+					item.classList.toggle('accordion--active');
+				});
 			});
-		});
-	};
-	accordions('.accordion');
-
+		};
+		accordions('.accordion');
 
 	//----------------------FORM-----------------------
 		// const forms = (formsSelector) => {
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		// 			let error = formValidate(item);
 			
 		// 			let formData = new FormData(item);
-		// 			formData.append('image', formImageAdd.files[0]);
+		// 			// formData.append('image', formImageAdd.files[0]);
 
 		// 			if (error === 0) {
 		// 				item.classList.add('_sending');
@@ -196,9 +196,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		// 					let modalThanks = document.querySelector('#modal--thanks');
 		// 					formParent.parentNode.style.display = 'none';
 
-		// 					modalThanks.style.display = 'flex';
+		// 					modalThanks.classList.add('active');
 		// 					document.body.classList.add('modal--open');
-		// 					formPreview.innerHTML = '';
+		// 					// formPreview.innerHTML = '';
 		// 					item.reset();
 		// 					item.classList.remove('_sending');
 		// 				} else {
@@ -235,59 +235,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		// 			return error;
 		// 		}
 
-		// 		const formImgFile = formParent.querySelectorAll('.formImgFile');
-		// 		// console.log(formImgFile);
-
-		// 		formImgFile.forEach(item => { 
-		// 			const elem = 'formImgFile--' + i++;
-
-		// 			let formId = item.id = (elem);
-		// 			let formParent = document.querySelector('#' + formId);
-
-		// 			const formImage = formParent.querySelector('.formImage');
-		// 			const formLebel = formParent.querySelector('.formLebel');
-		// 			const formPreview = formParent.querySelector('.formPreview');
-
-		// 			//картинка в форме
-		// 			let formImageNumber = 'formImage--' + img++;
-		// 			let formPreviewNumber = 'formPreview--' + prev++;
-					
-		// 			formImage.id = (formImageNumber);
-		// 			formLebel.htmlFor = ('formImage--' + lebel++);
-		// 			formPreview.id = (formPreviewNumber);
-		// 			console.log(formPreview);
-		// 			const formImageAdd = document.querySelector('#' + formImageNumber);
-
-		// 			// изменения в инпуте файл
-		// 			formImageAdd.addEventListener('change', () =>  {
-		// 				uploadFile(formImage.files[0]);
-		// 			});
-
-		// 			function uploadFile(file) {
-				
-		// 				if (!['image/jpeg', 'image/png', 'image/gif', 'image/ico'].includes(file.type)) {
-		// 					alert('Только изображения');
-		// 					formImage.value = '';
-		// 					return;
-		// 				}
-				
-		// 				if (file.size > 2 * 1024 * 1024) {
-		// 					alert('Размер менее 2 мб.');
-		// 					return;
-		// 				}
-				
-		// 				var reader = new FileReader();
-		// 				reader.onload = function (e) {
-		// 					formPreview.innerHTML = `<img src="${e.target.result}" alt="Фото">`;
-		// 				};
-		// 				reader.onerror = function (e) {
-		// 					alert('Ошибка');
-		// 				};
-		// 				reader.readAsDataURL(file);
-		// 			}
-		// 		})
-
-			
 		// 		function formAddError(input) {
 		// 			let div = document.createElement('div');
 		// 			div.classList.add("form__error");
