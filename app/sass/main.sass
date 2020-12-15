@@ -54,6 +54,12 @@
 	&--green
 		background-color: $green
 
+	&--disabled
+		background-color: #dbdee5
+		pointer-events: none
+		cursor: default !important
+
+
 // -----HAMBURGER-----
 .hamburger
 	position: relative
@@ -429,6 +435,107 @@
 		+r(576)
 			margin-bottom: 20px
 
+		&_line
+			display: flex
+			margin-bottom: 10px
+
+			&--two
+				display: flex
+				flex-wrap: wrap
+				justify-content: space-between !important
+
+				input, p, button, select
+					width: 100%
+					max-width: 48%
+
+					+r(767)
+						max-width: 100%
+						margin-bottom: 10px
+
+		&_price
+			padding: 10px
+			border-radius: 8px
+			background-color: #DBDEE5
+			text-align: center
+			display: flex
+			justify-content: center
+			flex-wrap: nowrap
+
+			p
+				max-width: 100%
+
+			i
+				font-style: normal
+
+			b, span
+				// display: block
+
+			b
+				font-weight: 400
+				margin-bottom: 5px
+
+			span
+				font-size: 26px
+
+				+r(992)
+					font-size: 30px
+
+				+r(767)
+					font-size: 24px
+
+		&_btn
+			order: 1
+			display: flex
+			justify-content: center
+
+		label
+			line-height: 1
+			margin-bottom: 0
+		// 	position: relative
+		// 	padding-left: 25px
+		// 	margin-left: 15px
+		// 	color: $text
+		// 	cursor: pointer
+		// 	margin-bottom: 0
+		// 	margin-right: 0
+
+		// 	&::before,
+		// 	&::after
+		// 		content: ''
+		// 		position: absolute
+		// 		left: 0
+
+		// 	&::before
+		// 		top: 2px
+		// 		width: 15px
+		// 		height: 15px
+		// 		border-radius: 3px
+		// 		border: 1px solid $btn
+
+		// 	&::after
+		// 		width: 9px
+		// 		height: 9px
+		// 		border-radius: 3px
+		// 		border: 1px solid $btn
+		// 		background: $btn
+		// 		left: 3px
+		// 		top: 5px
+		// 		transition: all .6s
+
+		input[type="checkbox"]
+			width: 15px
+			height: 15px
+			display: inline-block
+			margin-right: 10px
+			margin-left: 10px
+			cursor: pointer
+
+		// input[type="checkbox"]:checked + label::after
+		// 	transform: scale(1)
+
+		// input[type="checkbox"] + label::after
+		// 	transform: scale(0)
+
 	&__bunner
 		position: absolute
 		left: 0
@@ -477,6 +584,45 @@
 
 			+r(1200)
 				font-size: 40px
+
+
+.admin
+	&__add
+		position: relative
+		display: flex
+		flex-direction: column
+
+		&_elem
+			order: 0
+			border-top: 1px solid $text
+			padding-top: 15px
+
+			&:first-child
+				border: 0
+				padding-top: 0
+
+				.admin__nav_button
+					display: none
+
+	&__nav_button
+		position: absolute
+		left: 101%
+		width: 35px
+		height: 35px
+		background-color: #ffffff
+		border-radius: 50%
+		display: flex
+		justify-content: center
+		align-items: center
+
+		&:hover
+			svg
+				fill: red
+
+		svg
+			width: 20px
+			height: 20px
+			+transition
 
 
 .price
@@ -1280,4 +1426,8 @@
 			border-left: 4px solid transparent
 			border-right: 4px solid transparent
 			border-top: 4px solid transparent
+
+.delete
+	display: none
+
 
