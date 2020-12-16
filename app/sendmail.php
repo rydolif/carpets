@@ -13,16 +13,16 @@
 	$mail->IsHTML(true);
 
 	//От каго письмо
-	$mail->setFrom('rudolifrudolif@gmail.com', 'Cтирка ковров');
+	$mail->setFrom('Uborka36@yandex.ru', 'Cтирка ковров');
 	//Кому отправить
-	$mail->addAddress('rudolifrudolif@gmail.com');
+	$mail->addAddress('Uborka36@yandex.ru');
 	//Тема письма
 	$mail->Subject = ('Cтирка ковров');
 
 	//Тело письма
 	$body = '<h1>Cтирка ковров</h1>';
 
-	$n = 15;
+	$n = 15; 
 	for ($i = 0; $i <= $n; $i++) {
 		$product = $_POST['product--add--' . $i];
 		$wight = $_POST['product--wight--' . $i];
