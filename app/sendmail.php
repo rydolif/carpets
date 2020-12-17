@@ -13,9 +13,11 @@
 	$mail->IsHTML(true);
 
 	//От каго письмо
-	$mail->setFrom('Uborka36@yandex.ru', 'Cтирка ковров');
+	$mail->setFrom('rudolifrudolif@gmail.com', 'Cтирка ковров');
+	// $mail->setFrom('Uborka36@yandex.ru', 'Cтирка ковров');
 	//Кому отправить
-	$mail->addAddress('Uborka36@yandex.ru');
+	$mail->addAddress('rudolifrudolif@gmail.com');
+	// $mail->addAddress('Uborka36@yandex.ru');
 	//Тема письма
 	$mail->Subject = ('Cтирка ковров');
 
