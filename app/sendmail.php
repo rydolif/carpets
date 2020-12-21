@@ -13,16 +13,25 @@
 	$mail->IsHTML(true);
 
 	//От каго письмо
-	$mail->setFrom('rudolifrudolif@gmail.com', 'Cтирка ковров');
-	// $mail->setFrom('Uborka36@yandex.ru', 'Cтирка ковров');
+	// $mail->setFrom('rudolifrudolif@gmail.com', 'Cтирка ковров');
+	$mail->setFrom('Uborka36@yandex.ru', 'Cтирка ковров');
 	//Кому отправить
-	$mail->addAddress('rudolifrudolif@gmail.com');
-	// $mail->addAddress('Uborka36@yandex.ru');
+	// $mail->addAddress('rudolifrudolif@gmail.com');
+	$mail->addAddress('Uborka36@yandex.ru');
 	//Тема письма
 	$mail->Subject = ('Cтирка ковров');
 
 	//Тело письма
 	$body = '<h1>Cтирка ковров</h1>';
+
+	if(trim(!empty($_POST['name']))) {
+		$body.='<p><strong>Имя: </strong>' . $_POST['name']. '</p>';
+	}
+
+	if(trim(!empty($_POST['phone']))) {
+		$body.='<p><strong>Телефон: </strong>' . $_POST['phone']. '</p>';
+		$body.='---------------------------------------------------------------';
+	}
 
 	$n = 15; 
 	for ($i = 0; $i <= $n; $i++) {
@@ -71,14 +80,6 @@
 	}
 	if ($finall__delivery_input ) {
 		$body.='<p><strong>Стоимость доставки: </strong>' .  $finall__delivery_input . ' ₽ </p>';
-	}
-
-	if(trim(!empty($_POST['name']))) {
-		$body.='<p><strong>Имя: </strong>' . $_POST['name']. '</p>';
-	}
-
-	if(trim(!empty($_POST['phone']))) {
-		$body.='<p><strong>Телефон: </strong>' . $_POST['phone']. '</p>';
 	}
 
 	$mail->Body = $body;

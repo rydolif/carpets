@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			button.addEventListener('click', (e) => {
 				nav.classList.toggle('header__nav--active');
 				header.classList.toggle('header--menu');
+				button.classList.toggle('hamburger--active');
 			});
 
 			const headerWrap = document.querySelector('.header__nav');
@@ -101,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				if (e.target === headerWrap) {
 					nav.classList.remove('header__nav--active');
 					header.classList.remove('header--menu');
+					button.classList.remove('hamburger--active');
 				}
 			});
 

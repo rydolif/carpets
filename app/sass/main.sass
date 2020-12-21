@@ -69,25 +69,20 @@
 	border: none
 	background-color: transparent
 	transition: all .3s
-	width: 25px
-	height: 18px
 	margin-left: 15px
 	outline: none
+	z-index: 1200
+	width: 30px
+	height: 30px
+	border-radius: 50%
 
 	+r(767)
 		display: flex
 
-	&:hover
-		span
-			background-color: $accent
-
-			&::before,
-			&::after
-				background-color: $accent
 
 	&__item
 		position: absolute
-		left: 0
+		right: 0
 		top: 50%
 		transform: translate(0, -50%)
 		width: 15px
@@ -116,7 +111,6 @@
 			width: 25px
 
 	&--active
-		z-index: 100
 
 		.hamburger__item
 			background-color: transparent !important
@@ -125,11 +119,13 @@
 				top: 0
 				width: 25px
 				transform: rotate(45deg)
+				background-color: red
 
 			&::after
 				top: 0
 				width: 25px
 				transform: rotate(-45deg)
+				background-color: red
 
 //--------LINK--------
 .link
@@ -304,7 +300,8 @@
 			margin-right: 25px
 
 			+r(576)
-				margin-right: 10px
+				margin-right: 0
+				margin-bottom: 5px
 		
 		&_order
 			color: $accent
@@ -429,9 +426,8 @@
 		position: relative
 
 	&__form
-		max-width: 640px
+		max-width: 600px
 		margin: 0 auto
-		padding-right: 40px
 
 		+r(576)
 			margin-bottom: 20px
@@ -440,12 +436,15 @@
 			display: flex
 			margin-bottom: 10px
 
+			label
+				cursor: pointer
+
 			&--two
 				display: flex
 				flex-wrap: wrap
 				justify-content: space-between !important
 
-				input, p, button, select
+				input, p, button, select, a
 					width: 100%
 					max-width: 48%
 
@@ -469,7 +468,8 @@
 				font-style: normal
 
 			b, span
-				// display: block
+				+r(576)
+					display: block
 
 			b
 				font-weight: 400
@@ -488,6 +488,9 @@
 			order: 1
 			display: flex
 			justify-content: center
+
+			.btn
+				padding: 0 20px
 
 		label
 			line-height: 1
@@ -577,8 +580,14 @@
 		height: 35px
 		background-color: #ffffff
 		border-radius: 50%
-
 		cursor: pointer
+
+		+r(640)
+			position: relative
+			left: 0
+			right: 0
+			margin-left: auto
+			margin-bottom: 8px
 
 		&:hover
 			svg
